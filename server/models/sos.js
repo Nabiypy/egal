@@ -15,16 +15,8 @@ var modelDefinition = {
     account: { type: Sequelize.STRING},
     email:{ type: Sequelize.STRING },
     address:{ type: Sequelize.TEXT },
-    latitude: {
-      type: Sequelize.FLOAT,
-      allowNull: true,
-      defaultValue: null
-    },
-    longitude: {
-      type: Sequelize.FLOAT,
-      allowNull: true,
-      defaultValue: null
-    },
+    latitude: { type: Sequelize.TEXT},
+    longitude: { type: Sequelize.TEXT},
     geometry: {
       type: Sequelize.JSON
     },
