@@ -4,7 +4,7 @@ var config = require('./../config'),
     Sequelize = require('sequelize');
 
 module.exports = new Sequelize(
-    config.db.production.url,
+    // config.db.production.url,
   config.db.name,
   config.db.user,
   config.db.password,

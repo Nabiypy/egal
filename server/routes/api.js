@@ -40,9 +40,11 @@ var APIRoutes = function(passport) {
     router.get('/locations', SosServiceController.locations);
     router.get('/location/:userId', SosServiceController.location);
     router.get('/location/account/:account', SosServiceController.locationByAccount);
+
     router.get('/agents', AgentController.agents);
     router.get('/agent/:userId', AgentController.agents);
-    
+    router.put('/agent/update/:id', AgentController.updateAgent)
+    router.delete('/agent/remove/:id', AgentController.removeAgent)
 
     return router;
 };

@@ -11,7 +11,7 @@ var Sequelize = require('sequelize'),
 // 1: The model schema.
 var modelDefinition = {
     userId: { type: Sequelize.STRING},
-    gravatar: { type: Sequelize.TEXT},
+    gravatar: { type: Sequelize.BLOB('long')},
     firstName: { type: Sequelize.STRING, allowNull: false },
     otherNames: { type: Sequelize.STRING, allowNull: false },
     dateOfBirth: { type: Sequelize.STRING },
@@ -21,7 +21,7 @@ var modelDefinition = {
     email: { type: Sequelize.STRING },
     region: { type: Sequelize.STRING },
     city: { type: Sequelize.TEXT },
-    town: { type: Sequelize.DECIMAL },
+    town: { type: Sequelize.STRING },
     position: { type: Sequelize.STRING},
     geolocation: { type: Sequelize.TEXT},
     otherInfo: { type: Sequelize.TEXT }
@@ -36,6 +36,8 @@ var modelOptions = {
 
 // 3: Define the User model.
 var AgentModel = db.define('agent', modelDefinition, modelOptions);
+   
+// config.picture.addTo(AgentModel);
 
 function associate(models) {
     AgentModel.belongsTo(models.UserModel, {

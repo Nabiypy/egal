@@ -12,9 +12,40 @@ var config = require('../config'),
 
 // create maker post
 AgentController.addAgent = function (req, res) {
-  var body = req.body;
-  console.log("onboard agents request post >>>", body);
+  var body = req.body,
+      geodata= '';
 
+  console.log("onboard agents request post >>>", body);
+  var options = {
+    method: 'GET',
+    url: 'https://maps.googleapis.com/maps/api/geocode/json',
+    qs: { 
+      latlng: req.body.latitude +','+req.body.longitude,
+      key: 'AIzaSyAsQi8vzHfqrt33xQww77MN1Bg84iLSeOM'
+    },
+    json: true,
+ };
+
+  request(options, function(error, response, body) {
+    console.log('options', options);
+    if (error) throw new Error(error);
+   
+    var formatted_address = body.results[0];
+    geodata = formatted_address.formatted_address
+    console.log('formatted address =>> ', geodata);
+    Business.update(
+      {
+        geolocation: geodata
+      }, {
+        where: {
+          userId: {
+            $like: req.body.userId
+          }
+        }
+      }
+    );
+
+  });
   db.sync().then(function () {
     var newPost = {
       userId: req.body.userId,

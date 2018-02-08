@@ -2,18 +2,34 @@
 'use strict';
 
 var nodemailer = require('nodemailer'),
+    SequelizeFile = require('sequelize-file'),
     config = module.exports;
 
 config.db = {
-  user: 'root',
+  user: 'hanson',
   password: 'digimas14',
-  name: 'egal_findr'
+  name: 'areash5_findmeagent'
 };
+
 config.db.details = {
-  host: 'localhost',
+  host: '172.81.119.95',
   port: 3306,
   dialect: 'mysql'
 };
+
+// config.db = {
+//   user: 'root',
+//   password: 'digimas14',
+//   name: 'egal_findr'
+// };
+
+// config.db.details = {
+//   host: 'localhost',
+//   port: 3306,
+//   dialect: 'mysql'
+// };
+
+
 config.db.production = {
   url: 'postgres://vcgztlmh:1_ZBt7fkHjaBthXfLZFt3o-O7906rydL@baasu.db.elephantsql.com:5432/vcgztlmh',
   dialect: 'postgres'
@@ -57,4 +73,14 @@ config.transporter = nodemailer.createTransport({
     pass: '#tr1nz13t'
   }
 });
+
+// config.picture = SequelizeFile({
+//    attribute: 'picture',
+//   mimetype: /^image/,
+//   crop: true,
+//   sizes: {
+//    small: 64, //width 64
+//    big: 150, //width 150
+//   }
+// });
 
